@@ -1,0 +1,485 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "tailwindcss";
+
+:root {
+  --background: oklch(14.1% 0.005 285.823);
+  --foreground: oklch(98.5% 0 0);
+  --card: oklch(21% 0.006 285.885);
+  --primary: oklch(69.6% 0.17 162.48);
+  --green-400: oklch(79.2% 0.209 151.711);
+  --green-500: oklch(72.3% 0.219 149.579);
+  --green-600: oklch(62.7% 0.194 149.214);
+  --border: oklch(100% 0 0 / 0.1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-green-400: var(--green-400);
+  --color-green-500: var(--green-500);
+  --color-green-600: var(--green-600);
+  --color-border: var(--border);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top, color-mix(in oklab, var(--primary) 18%, transparent) 0%, transparent 28%),
+    radial-gradient(circle at 85% 18%, color-mix(in oklab, var(--green-400) 12%, transparent) 0%, transparent 22%),
+    linear-gradient(180deg, color-mix(in oklab, var(--background) 92%, black) 0%, var(--background) 100%);
+  color: var(--foreground);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--primary) 35%, transparent);
+  color: white;
+}
+
+@utility container-shell {
+  @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-10;
+}
+
+@utility glass {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, white 8%) 0%, color-mix(in oklab, var(--card) 96%, black 4%) 100%);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(16px);
+}
+
+@utility section-title {
+  @apply text-3xl font-semibold tracking-tight text-white sm:text-4xl;
+}
+
+@utility section-copy {
+  @apply max-w-2xl text-sm leading-7 text-white/66 sm:text-base;
+}
+
+@utility pill {
+  @apply inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-all duration-300;
+  border-color: var(--border);
+  background: color-mix(in oklab, var(--card) 72%, transparent);
+}
+
+@utility glow-ring {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--primary) 35%, transparent),
+    0 0 24px color-mix(in oklab, var(--primary) 22%, transparent);
+}
+
+@utility perspective-strong {
+  perspective: 1800px;
+  perspective-origin: center center;
+}
+
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.depth-card {
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.surface-pop {
+  transform: translateZ(22px);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.specular::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(125deg, rgba(255, 255, 255, 0.16), transparent 20%, transparent 75%, rgba(255, 255, 255, 0.06)),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.12), transparent 26%);
+  mix-blend-mode: screen;
+  opacity: 0.45;
+}
+
+.aurora-panel::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background: conic-gradient(from 180deg at 50% 50%, rgba(16, 185, 129, 0.14), transparent 22%, rgba(52, 211, 153, 0.12), transparent 48%, rgba(16, 185, 129, 0.08), transparent 75%);
+  filter: blur(40px);
+  animation: orbital 14s linear infinite;
+}
+
+.hologrid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
+}
+
+.grid-noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 95%);
+  opacity: 0.25;
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: -120%;
+  background: linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.08) 50%, transparent 65%);
+  transform: translateX(-35%);
+  animation: shimmer 7s linear infinite;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--green-400), var(--primary), #ffffff 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.progress-track {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.timeline-line {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--primary) 80%, white 20%), rgba(255, 255, 255, 0.08));
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-40%) rotate(12deg);
+  }
+  to {
+    transform: translateX(40%) rotate(12deg);
+  }
+}
+
+@keyframes floaty {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes orbital {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(360deg) scale(1.02);
+  }
+}
+
+.floaty {
+  animation: floaty 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-panel::after {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .shimmer::after,
+  .floaty {
+    animation: none;
+  }
+}
+/* ─── CSS Variables ──────────────────────────────────────────────────────── */
+:root {
+  --primary: #10b981;
+  --green-400: #34d399;
+  --green-600: #059669;
+  --background: #08080a;
+  --foreground: #f8fafc;
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Layout ─────────────────────────────────────────────────────────────── */
+.container-shell {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .container-shell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-shell {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+/* ─── Glass morphism ─────────────────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.glass.specular::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    transparent 50%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* ─── Aurora panel ───────────────────────────────────────────────────────── */
+.aurora-panel {
+  background: rgba(8, 8, 12, 0.72);
+}
+
+/* ─── Depth / 3D cards ───────────────────────────────────────────────────── */
+.depth-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.perspective-strong {
+  perspective: 1200px;
+}
+
+/* ─── Surface pop (subtle lift on hover) ────────────────────────────────── */
+.surface-pop {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.surface-pop:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+/* ─── Shimmer effect ─────────────────────────────────────────────────────── */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -75%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  animation: shimmer-move 4s infinite;
+}
+
+@keyframes shimmer-move {
+  0%   { left: -75%; }
+  100% { left: 150%; }
+}
+
+/* ─── Holo grid ──────────────────────────────────────────────────────────── */
+.hologrid {
+  background-image:
+    linear-gradient(rgba(52, 211, 153, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52, 211, 153, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ─── Glow ring ──────────────────────────────────────────────────────────── */
+.glow-ring {
+  box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.2),
+              0 0 18px rgba(52, 211, 153, 0.15);
+}
+
+/* ─── Pill badges ────────────────────────────────────────────────────────── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ─── Progress track ─────────────────────────────────────────────────────── */
+.progress-track {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+/* ─── Timeline line ──────────────────────────────────────────────────────── */
+.timeline-line {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(52, 211, 153, 0.3) 20%,
+    rgba(52, 211, 153, 0.3) 80%,
+    transparent
+  );
+}
+
+/* ─── Text gradient ──────────────────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #34d399, #10b981, #059669);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Grid noise overlay ─────────────────────────────────────────────────── */
+.grid-noise {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ─── Section typography helpers ─────────────────────────────────────────── */
+.section-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: white;
+  max-width: 52rem;
+  line-height: 1.15;
+}
+
+.section-copy {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 42rem;
+}
+
+/* ─── Utility: background & foreground tokens ────────────────────────────── */
+.bg-background  { background-color: var(--background); }
+.text-foreground { color: var(--foreground); }
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(52, 211, 153, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(52, 211, 153, 0.45);
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(52, 211, 153, 0.25);
+  color: white;
+}
+
+/* ─── Ripple animation (used by RippleButton) ────────────────────────────── */
+@keyframes ripple {
+  from { transform: translate(-50%, -50%) scale(1); opacity: 0.55; }
+  to   { transform: translate(-50%, -50%) scale(18); opacity: 0; }
+} 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
