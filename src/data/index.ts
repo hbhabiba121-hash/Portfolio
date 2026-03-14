@@ -15,7 +15,6 @@ import type {
   ShowcaseCard,
   SocialLink,
 } from "../types";
-import "./i18n";
 export const navItems: NavItem[] = [
   { label: "Accueil", href: "#hero" },
   { label: "Expérience", href: "#experience" },
@@ -83,7 +82,7 @@ export const projects: Project[] = [
     tech: ["React", "Next.js", "Node.js", "Mapbox", "Tailwind"],
     link: "https://nbellghou.vercel.app",
     accent: "from-emerald-400/25 via-emerald-500/12 to-transparent",
-    image: "/public/projects/nballgou.png",
+    image: "/projects/nballgou.png",
     github: "https://github.com/hbhabiba121-hash/Nbellghou",
     demo: "https://nbellghou.vercel.app",
   },
@@ -96,7 +95,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Vite", "Tailwind"],
     link: "https://hayvision.vercel.app",
     accent: "from-green-400/25 via-emerald-500/12 to-transparent",
-    image: "/public/projects/hayvision.png",
+    image: "/projects/hayvision.png",
     github: "https://github.com/hbhabiba121-hash/HayVision",
     demo: "https://hayvision.vercel.app",
   },
@@ -109,7 +108,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Tailwind", "Framer Motion"],
     link: "https://arkanna-six.vercel.app",
     accent: "from-amber-400/25 via-orange-400/12 to-transparent",
-    image: "/public/projects/arkanna.png",
+    image: "/projects/arkanna.png",
     github: "https://github.com/hbhabiba121-hash/Arkanna-Cooperative",
     demo: "https://arkanna-six.vercel.app",
   },
@@ -121,7 +120,7 @@ export const projects: Project[] = [
     tech: ["Flutter", "Dart", "Google Maps API"],
     link: "",
     accent: "from-blue-400/25 via-cyan-400/12 to-transparent",
-    image: "/public/projects/rabatsaleguide.png",
+    image: "/projects/rabatsaleguide.png",
     github: "https://github.com/hbhabiba121-hash/Rabat-Sale-Guide-App",
     demo: "",
   },
