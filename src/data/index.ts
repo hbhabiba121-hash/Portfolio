@@ -159,7 +159,7 @@ export const projects: Project[] = [
     tech: ["Flutter", "Dart", "Material UI"],
     link: "https://github.com/hbhabiba121-hash/RabatBites",
     accent: "from-red-400/25 via-orange-400/12 to-transparent",
-    image: "/public/projects/rabatbites.png",
+    image: "public/projects/rabatbites.png",
     github: "https://github.com/hbhabiba121-hash/RabatBites",
     demo: "",
   },
