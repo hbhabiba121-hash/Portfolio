@@ -71,7 +71,7 @@ export function HeroSection() {
               Me contacter <FiSend />
             </RippleButton>
               <RippleButton
-                href="/public/CV - Habiba El Mahfoudi.pdf"
+                href="/CV - Habiba El Mahfoudi.pdf"
                 className="border-white/12 bg-white/4 text-white"
               >Télécharger CV <FiDownload />
               </RippleButton>
